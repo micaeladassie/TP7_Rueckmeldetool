@@ -1,52 +1,50 @@
 <!DOCTYPE html>
-<html lang="de">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geschutztseite</title>
-    <style>
-      body {
-        font-family: sans-serif;
-        text-align: center;
-        margin-top: 15vh;
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Accesso</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; margin-top: 15vh; }
+    .wrap { display: inline-flex; gap: 8px; align-items: center; }
+    input, button { padding: 10px; border: 1px solid #ccc; border-radius: 6px; }
+    button { cursor: pointer; }
+    /* assicura che i click passino al bottone */
+    button, input { pointer-events: auto; position: relative; z-index: 1; }
+  </style>
+</head>
+<body>
+  <h2>Inserisci la password</h2>
+
+  <div class="wrap">
+    <input type="password" id="pw" placeholder="Password" autocomplete="current-password" />
+    <button type="button" id="go">Accedi</button>
+  </div>
+
+  <script>
+    function goNext() {
+      const ok = document.getElementById('pw').value === 'chiave123'; // <-- cambia qui
+      if (ok) {
+        // reindirizza la PAGINA PADRE (Experience) alla pagina successiva
+        window.parent.location.href = 'https://experience.arcgis.com/experience/83718c2c376e4a4bb3db6ed8b01c5458?page=Pagina2';
+      } else {
+        alert('Password errata');
       }
-      input, button {
-        padding: 8px;
-        border-radius: 4px;
-        border: 1px solid #ccc;
-        margin-top: 8px;
+    }
+
+    // evita inline handlers; usa event listener
+    document.getElementById('go').addEventListener('click', function(e){
+      e.preventDefault(); // evita submit/refresh
+      goNext();
+    });
+
+    // invio con tasto "Enter"
+    document.getElementById('pw').addEventListener('keydown', function(e){
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        goNext();
       }
-      #content {
-        display: none;
-      }
-    </style>
-  </head>
-  <body>
-    <h2>Bitte Password hier einfügen</h2>
-    <input type="password" id="pw" placeholder="Password">
-    <button onclick="checkPassword()">Hier anmelden</button>
-
-    <div id="content">
-      <h3>✅ Bestätigung ist richtig erfolgreich!</h3>
-      <p> Danke. </p>
-    </div>
-
-    <input type="password" id="pw" placeholder="Password">
-<button type="button" id="go">Accedi</button>
-
-<script>
-document.getElementById('go').addEventListener('click', function (e) {
-  e.preventDefault();
-  const ok = document.getElementById('pw').value === 'chiave123';
-  if (ok) {
-    window.parent.location.href = 'https://experience.arcgis.com/experience/83718c2c376e4a4bb3db6ed8b01c5458?page=Pagina2';
-  } else {
-    alert('Password errata');
-  }
-});
-</script>
-
-  </body>
-
+    });
+  </script>
+</body>
 </html>
-
