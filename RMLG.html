@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geschutztseite</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        text-align: center;
+        margin-top: 15vh;
+      }
+      input, button {
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        margin-top: 8px;
+      }
+      #content {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Bitte Password hier einfügen</h2>
+    <input type="password" id="pw" placeholder="Password">
+    <button onclick="checkPassword()">Hier anmelden</button>
+
+    <div id="content">
+      <h3>✅ Bestätigung ist richtig erfolgreich!</h3>
+      <p> Danke. </p>
+    </div>
+
+    <script>
+      function checkPassword() {
+        const pw = document.getElementById("pw").value;
+        const correct = "chiave123";
+        if (pw === correct) {
+          window.parent.location.href = "https://experience.arcgis.com/experience/83718c2c376e4a4bb3db6ed8b01c5458";
+        } else {
+          alert("Password ");
+        }
+      }
+    </script>
+  </body>
+</html>
