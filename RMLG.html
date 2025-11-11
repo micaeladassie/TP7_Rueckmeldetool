@@ -32,15 +32,18 @@
     </div>
 
     <script>
-      function checkPassword() {
-        const pw = document.getElementById("pw").value;
-        const correct = "chiave123";
-        if (pw === correct) {
-          window.parent.location.href = "https://experience.arcgis.com/experience/83718c2c376e4a4bb3db6ed8b01c5458";
-        } else {
-          alert("Password ");
-        }
-      }
-    </script>
+function checkPassword() {
+  const pw = document.getElementById("pw").value;
+  const correct = "chiave123"; // <-- metti la tua password qui
+  if (pw === correct) {
+    // ✅ Reindirizza alla pagina 2 dell'app Experience
+    window.parent.location.href = "https://experience.arcgis.com/experience/83718c2c376e4a4bb3db6ed8b01c5458?page=Pagina2";
+  } else {
+    alert("Password errata. Riprova.");
+  }
+}
+</script>
+
   </body>
+
 </html>
