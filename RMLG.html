@@ -14,17 +14,17 @@
   </style>
 </head>
 <body>
-  <h2>Inserisci la password</h2>
+  <h2>Password einfügen</h2>
 
   <div class="wrap">
     <input type="password" id="pw" placeholder="Password" autocomplete="current-password" />
-    <button type="button" id="go">Accedi</button>
+    <button type="button" id="go">Anmelden</button>
   </div>
 
   <script>
   function goNext() {
-    const ok = document.getElementById('pw').value === 'chiave123'; // <-- metti la tua password
-    const url = 'https://experience.arcgis.com/experience/83718c2c376e4a4bb3db6ed8b01c5458?page=Pagina2'; // <-- metti l'URL esatto della Pagina 2
+    const ok = document.getElementById('pw').value === 'chiave123';
+    const url = 'https://experience.arcgis.com/experience/83718c2c376e4a4bb3db6ed8b01c5458?page=Pagina2';
 
     if (!ok) {
       alert('Password errata');
@@ -61,4 +61,5 @@
 
 </body>
 </html>
+
 
