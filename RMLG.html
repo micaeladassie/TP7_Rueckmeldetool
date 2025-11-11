@@ -31,19 +31,22 @@
       <p> Danke. </p>
     </div>
 
-    <script>
-function checkPassword() {
-  const pw = document.getElementById("pw").value;
-  const correct = "chiave123"; // <-- metti la tua password qui
-  if (pw === correct) {
-    // ✅ Reindirizza alla pagina 2 dell'app Experience
-    window.parent.location.href = "https://experience.arcgis.com/experience/83718c2c376e4a4bb3db6ed8b01c5458?page=Pagina2";
+    <input type="password" id="pw" placeholder="Password">
+<button type="button" id="go">Accedi</button>
+
+<script>
+document.getElementById('go').addEventListener('click', function (e) {
+  e.preventDefault();
+  const ok = document.getElementById('pw').value === 'chiave123';
+  if (ok) {
+    window.parent.location.href = 'https://experience.arcgis.com/experience/83718c2c376e4a4bb3db6ed8b01c5458?page=Pagina2';
   } else {
-    alert("Password errata. Riprova.");
+    alert('Password errata');
   }
-}
+});
 </script>
 
   </body>
 
 </html>
+
