@@ -22,29 +22,43 @@
   </div>
 
   <script>
-    function goNext() {
-      const ok = document.getElementById('pw').value === 'chiave123'; // <-- cambia qui
-      if (ok) {
-        // reindirizza la PAGINA PADRE (Experience) alla pagina successiva
-        window.parent.location.href = 'https://experience.arcgis.com/experience/83718c2c376e4a4bb3db6ed8b01c5458?page=Pagina2';
-      } else {
-        alert('Password errata');
-      }
+  function goNext() {
+    const ok = document.getElementById('pw').value === 'chiave123'; // <-- metti la tua password
+    const url = 'https://experience.arcgis.com/experience/83718c2c376e4a4bb3db6ed8b01c5458?page=Pagina2'; // <-- metti l'URL esatto della Pagina 2
+
+    if (!ok) {
+      alert('Password errata');
+      return;
     }
 
-    // evita inline handlers; usa event listener
-    document.getElementById('go').addEventListener('click', function(e){
-      e.preventDefault(); // evita submit/refresh
-      goNext();
-    });
+    // Metodo A: crea un <a target="_top"> e cliccalo (navigazione top-level “user-initiated”)
+    const a = document.createElement('a');
+    a.href = url;
+    a.target = '_top';
+    document.body.appendChild(a);
+    a.click();
 
-    // invio con tasto "Enter"
-    document.getElementById('pw').addEventListener('keydown', function(e){
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        goNext();
-      }
-    });
-  </script>
+    // Metodo B (fallback): prova anche con JS diretto (se consentito)
+    // window.top.location.assign(url);
+    // oppure:
+    // window.parent.location.href = url;
+  }
+
+  // collega il bottone senza usare onclick inline
+  document.getElementById('go').addEventListener('click', function (e) {
+    e.preventDefault();
+    goNext();
+  });
+
+  // invio con Enter
+  document.getElementById('pw').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      goNext();
+    }
+  });
+</script>
+
 </body>
 </html>
+
