@@ -1,65 +1,51 @@
 <!DOCTYPE html>
-<html lang="it">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Accesso</title>
-  <style>
-    body { font-family: sans-serif; text-align: center; margin-top: 15vh; }
-    .wrap { display: inline-flex; gap: 8px; align-items: center; }
-    input, button { padding: 10px; border: 1px solid #ccc; border-radius: 6px; }
-    button { cursor: pointer; }
-    /* assicura che i click passino al bottone */
-    button, input { pointer-events: auto; position: relative; z-index: 1; }
-  </style>
+<meta charset="UTF-8"/>
+<title>Accesso Progetto</title>
+<style>
+body { font-family:sans-serif; text-align:center; margin-top:10vh; }
+#loginbox { display:block; }
+#appbox { display:none; }
+iframe { width:100%; height:90vh; border:0; }
+</style>
 </head>
 <body>
-  <h2>Password einfügen</h2>
 
-  <div class="wrap">
-    <input type="password" id="pw" placeholder="Password" autocomplete="current-password" />
-    <button type="button" id="go">Anmelden</button>
-  </div>
+<div id="loginbox">
+  <h2>Inserisci la password</h2>
+  <input type="password" id="pw" placeholder="Password" />
+  <button onclick="check()">Accedi</button>
+  <p id="msg" style="color:red"></p>
+</div>
 
-  <script>
-  function goNext() {
-    const ok = document.getElementById('pw').value === 'chiave123';
-    const url = 'https://experience.arcgis.com/experience/83718c2c376e4a4bb3db6ed8b01c5458?page=Pagina2';
+<div id="appbox">
+  <h2>Progetto</h2>
+  <iframe id="appframe"></iframe>
+</div>
 
-    if (!ok) {
-      alert('Password errata');
-      return;
-    }
 
-    // Metodo A: crea un <a target="_top"> e cliccalo (navigazione top-level “user-initiated”)
-    const a = document.createElement('a');
-    a.href = url;
-    a.target = '_top';
-    document.body.appendChild(a);
-    a.click();
+<script>
+const PASSWORD = "chiave123";
+const EXPERIENCE_URL = "https://experience.arcgis.com/experience/d3717b7442e04b5d9651ca7401b2d6c9?draft=true";
 
-    // Metodo B (fallback): prova anche con JS diretto (se consentito)
-    // window.top.location.assign(url);
-    // oppure:
-    // window.parent.location.href = url;
+function check(){
+  let p = document.getElementById("pw").value;
+  if(p === PASSWORD){
+    
+    // nascondi login
+    document.getElementById("loginbox").style.display = "none";
+
+    // mostra experience embedded
+    document.getElementById("appbox").style.display = "block";
+
+    // carica l’Experience dentro iframe
+    document.getElementById("appframe").src = EXPERIENCE_URL;
+  
+  } else {
+    document.getElementById("msg").textContent = "Password errata";
   }
-
-  // collega il bottone senza usare onclick inline
-  document.getElementById('go').addEventListener('click', function (e) {
-    e.preventDefault();
-    goNext();
-  });
-
-  // invio con Enter
-  document.getElementById('pw').addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      goNext();
-    }
-  });
+}
 </script>
-
 </body>
 </html>
-
-
