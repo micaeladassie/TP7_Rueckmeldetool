@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Accesso Progetto</title>
+<style>
+body { font-family:sans-serif; text-align:center; margin-top:10vh; }
+#loginbox { display:block; }
+#appbox { display:none; }
+iframe { width:100%; height:90vh; border:0; }
+</style>
+</head>
+<body>
+
+<div id="loginbox">
+  <h2>Inserisci la password</h2>
+  <input type="password" id="pw" placeholder="Password" />
+  <button onclick="check()">Accedi</button>
+  <p id="msg" style="color:red"></p>
+</div>
+
+<div id="appbox">
+  <h2>Progetto</h2>
+  <iframe id="appframe"></iframe>
+</div>
+
+
+<script>
+const PASSWORD = "chiave123";
+const EXPERIENCE_URL = "https://experience.arcgis.com/experience/d3717b7442e04b5d9651ca7401b2d6c9?draft=true";
+
+function check(){
+  let p = document.getElementById("pw").value;
+  if(p === PASSWORD){
+    
+    // nascondi login
+    document.getElementById("loginbox").style.display = "none";
+
+    // mostra experience embedded
+    document.getElementById("appbox").style.display = "block";
+
+    // carica l’Experience dentro iframe
+    document.getElementById("appframe").src = EXPERIENCE_URL;
+  
+  } else {
+    document.getElementById("msg").textContent = "Password errata";
+  }
+}
+</script>
+</body>
+</html>
