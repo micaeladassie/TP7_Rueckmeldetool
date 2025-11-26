@@ -2,25 +2,24 @@
 <html>
 <head>
 <meta charset="UTF-8"/>
-<title>Accesso Progetto</title>
+<title>Login AWN Rückmeldung Aufnahmefläche</title>
 <style>
-body { font-family:sans-serif; text-align:center; margin-top:10vh; }
-#loginbox { display:block; }
-#appbox { display:none; }
-iframe { width:100%; height:90vh; border:0; }
+body { font-family:sans-serif; text-align:center; margin:0; }
+#loginbox { display:block; margin-top:20vh; }
+#appbox { display:none; margin:0; padding:0; }
+iframe { width:100vw; height:100vh; border:0; }
 </style>
 </head>
 <body>
 
 <div id="loginbox">
-  <h2>Inserisci la password</h2>
+  <h2>Passwort einfügen</h2>
   <input type="password" id="pw" placeholder="Password" />
-  <button onclick="check()">Accedi</button>
+  <button onclick="check()">Anmelden</button>
   <p id="msg" style="color:red"></p>
 </div>
 
 <div id="appbox">
-  <h2>Progetto</h2>
   <iframe id="appframe"></iframe>
 </div>
 
@@ -43,11 +42,12 @@ function check(){
     document.getElementById("appframe").src = EXPERIENCE_URL;
   
   } else {
-    document.getElementById("msg").textContent = "Password errata";
+    document.getElementById("msg").textContent = "Password ungültig";
   }
 }
 </script>
 </body>
 </html>
+
 
 
